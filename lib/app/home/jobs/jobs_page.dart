@@ -15,29 +15,6 @@ import '../models/job.dart';
 
 class JobsPage extends StatelessWidget {
   const JobsPage({Key? key}) : super(key: key);
-
-
-
-  Future<void> _signOut(BuildContext context) async{
-    try {
-      final auth = Provider.of<AuthBase>(context, listen: false);
-      await auth.signOut();
-    }catch(e){
-      print('sign out err: ${e.toString()}');
-    }
-  }
-  Future<void> _confirmSignOut(BuildContext context) async{
-    final didRequestSignout = await showAlertDialog(
-      context,
-      title: 'Logout',
-      content: 'Are you sure you want to logout?',
-      cancelActionText: 'cancel',
-      defaultActionText: 'logout'
-    );
-    if(didRequestSignout == true) {
-      _signOut(context);
-    }
-  }
   Future<void> _delete(BuildContext context, Job job) async{
     final database = Provider.of<Database>(context, listen: false);
     try {
@@ -58,20 +35,16 @@ class JobsPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Jobs Page'),
         actions: <Widget>[
-          FlatButton(
-            child: const Text('Logout' , style: TextStyle(fontSize: 18.0, color: Colors.white),),
-            onPressed: () => _confirmSignOut(context),
+          IconButton(
+            icon: const Icon(Icons.add, color: Colors.white,),
+            onPressed: () => EditJobPage.show(
+                context,
+                database: Provider.of<Database>(context, listen: false)
+            ),
           ),
         ],
       ),
       body: _buildContents(context),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => EditJobPage.show(
-            context,
-            database: Provider.of<Database>(context, listen: false)
-        ),
-      ),
     );
   }
 
