@@ -24,9 +24,9 @@ class _HomePageState extends State<HomePage> {
   }
   Map<TabItem, WidgetBuilder> get widgetBuilders {
     return {
-      TabItem.jobs: (_) => JobsPage(),
+      TabItem.jobs: (_) => const JobsPage(),
       TabItem.entries: (_) => Container(),
-      TabItem.account: (_) => AccountPage(),
+      TabItem.account: (_) => const AccountPage(),
     };
   }
   @override
