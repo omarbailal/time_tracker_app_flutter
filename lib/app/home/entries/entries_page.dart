@@ -6,13 +6,12 @@ import 'package:time_tracker_flutter_course/app/home/jobs/list_item_builder.dart
 import 'package:time_tracker_flutter_course/app/services/database.dart';
 
 class EntriesPage extends StatelessWidget {
-  const EntriesPage({Key? key}) : super(key: key);
 
   static Widget create(BuildContext context) {
     final database = Provider.of<Database>(context, listen: false);
     return Provider<EntriesBloc>(
       create: (_) => EntriesBloc(database: database),
-      child: const EntriesPage(),
+      child: EntriesPage(),
     );
   }
 
