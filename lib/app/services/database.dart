@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:time_tracker_flutter_course/app/home/models/entry.dart';
 import 'package:time_tracker_flutter_course/app/home/models/job.dart';
 import 'api_path.dart';
@@ -12,7 +11,7 @@ abstract class Database {
 
   Future<void> setEntry(Entry entry);
   Future<void> deleteEntry(Entry entry);
-  Stream<List<Entry>> entriesStream({required Job job});
+  Stream<List<Entry>> entriesStream({Job job});
 }
 
 String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
